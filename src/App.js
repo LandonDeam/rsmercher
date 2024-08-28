@@ -1,19 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
+import Table from "./components/Table";
 
-function MyButton() {
+const App = () => {
   return (
-    <button>I'm a button</button>
-  )
-}
-
-function App() {
-  return (
-    <div>
-      <h1>Welcome to my app</h1>
-        <MyButton />
+    <div className="table_container">
+      <h1>Sortable table with React</h1>
+      <Table />
     </div>
   );
-}
+};
 
 export default App;
