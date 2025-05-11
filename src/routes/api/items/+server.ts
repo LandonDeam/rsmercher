@@ -1,11 +1,12 @@
-import { json } from '@sveltejs/kit';
+import { json} from '@sveltejs/kit';
+import type { RequestEvent } from '@sveltejs/kit'
 import mysqlx from '@mysql/xdevapi';
 import dotenv from 'dotenv';
 dotenv.config(); // loads from .env automatically
 
 const DB_NAME = 'osrs_market';
 
-export async function GET({ url }) {
+export async function GET({ url }: RequestEvent) {
 	const sort = url.searchParams.get('sort') ?? 'profit';
 	const direction = url.searchParams.get('direction') === 'asc' ? 'ASC' : 'DESC';
 	const members = url.searchParams.get('members') === 'true';

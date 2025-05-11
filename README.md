@@ -1,22 +1,28 @@
-# sv
+# RS Mercher
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A tool for runescape merching
 
-## Creating a project
+## Installing
 
-If you're seeing this, you've probably already done this step. Congrats!
+Make sure that you have both `node` and `npm` installed, as they're required to build/run this project.
+
+You will also need a functioning MySQL database with the MySQLX plugin working, and a database like 
+would be created by the [sister project](https://github.com/LandonDeam/osrspricedb) to this one.
 
 ```bash
-# create a new project in the current directory
-npx sv create
+# Clone the repository
+git clone https://github.com/LandonDeam/rsmercher
 
-# create a new project in my-app
-npx sv create my-app
+# Change directory into the repo
+cd rsmercher
+
+# Install libraries
+npm i
 ```
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Once you've installed all of the dependencies, you can start a development server:
 
 ```bash
 npm run dev
@@ -27,12 +33,14 @@ npm run dev -- --open
 
 ## Building
 
-To create a production version of your app:
+To create a production version of the app:
 
 ```bash
 npm run build
 ```
 
-You can preview the production build with `npm run preview`.
+You can preview the production build with `npm run preview`. Otherwise, you can run the production build with:
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+```bash
+node run build
+```

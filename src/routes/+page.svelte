@@ -130,6 +130,12 @@
       overflow: hidden;
     }
 
+    h1 {
+      padding-left: 15px;
+      font-size: 70pt;
+      font-family: sans-serif;
+    }
+
     .table-container {
       overflow: auto;
       scrollbar-width: none;         /* Firefox */
@@ -309,7 +315,7 @@
 
               <td>{item.profit != null ? item.profit.toLocaleString() + ' gp' : 'N/A'}</td>
 
-              <td>{item.ge_limit != null ? item.ge_limit : '∞'}</td>
+              <td>{item.ge_limit != null ? item.ge_limit : 'Unlimited'}</td>
 
               <td>
                 {item.profit != null && item.ge_limit != null
