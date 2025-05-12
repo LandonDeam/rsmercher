@@ -125,6 +125,8 @@
       margin: 0;
       padding: 0;
       width: 100%;
+      display: flex;
+      flex-direction: column;
       height: 100vh;
       color: #f2f2f2;
       overflow: hidden;
@@ -137,6 +139,7 @@
     }
 
     .table-container {
+      flex: 1;
       overflow: auto;
       scrollbar-width: none;         /* Firefox */
       -ms-overflow-style: none;      /* IE/Edge */

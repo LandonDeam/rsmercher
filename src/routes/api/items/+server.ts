@@ -32,21 +32,19 @@ export async function GET({ url }: RequestEvent) {
 
 	const membersParam = url.searchParams.get('members');
 	if (membersParam === 'f2p') {
-	sql += ` AND members = FALSE`;
+	  sql += ` AND members = FALSE`;
 	} else if (membersParam === 'members') {
-	sql += ` AND members = TRUE`;
+	  sql += ` AND members = TRUE`;
 	}
 
 	// Handle sorting (profitability needs to be calculated)
 	sql += ` ORDER BY `;
-
 	
 	if (safeSort === 'profitability') {
 		sql += `(profit * IFNULL(ge_limit, 1)) ${direction}`;
 	} else {
 		sql += `${safeSort} ${direction}`;
 	}
-
 	const result = await session.sql(sql).execute();
 	const rows = result.fetchAll();
 	const items = rows.map(row => ({
