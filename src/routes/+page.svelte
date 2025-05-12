@@ -42,22 +42,14 @@
 
     async function fetchItems() {
       loading = true;
-      const params = new URLSearchParams({
-        sort: sortField,
-        direction: sortDirection,
-        members: membershipFilter === 'all' ? '' : membershipFilter
-      });
-
       try {
-        const res = await fetch(`/api/items?${params}`);
+        const res = await fetch(`/api/items`);
         items = await res.json();
       } catch (error) {
         console.error('Failed to fetch items:', error);
       }
-
       loading = false;
     }
-
 
     function toggleSort(field: SortField) {
       if (sortField === field) {
@@ -114,9 +106,32 @@
     return "";
   }
 
-  $: filteredItems = items.filter(item =>
-    item.item_name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  $: filteredItems = items
+    // Filter by name
+    .filter(item => item.item_name.toLowerCase().includes(searchQuery.toLowerCase()))
+    // Filter by membership
+    .filter(item => {
+      if (membershipFilter === 'all') return true;
+      return membershipFilter === 'members' ? item.members : !item.members;
+    })
+    // Sort
+    .sort((a, b) => {
+      let aVal: number, bVal: number;
+
+      if (sortField === 'profitability') {
+        aVal = a.profit * (a.ge_limit ?? 1);
+        bVal = b.profit * (b.ge_limit ?? 1);
+      } else if (sortField === 'last_update') {
+        aVal = a.last_updated;
+        bVal = b.last_updated;
+      } else {
+        aVal = a[sortField as keyof Item] as number;
+        bVal = b[sortField as keyof Item] as number;
+      }
+
+      if (sortDirection === 'asc') return aVal - bVal;
+      return bVal - aVal;
+    });
   </script>
 
   <style>
