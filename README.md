@@ -20,6 +20,17 @@ cd rsmercher
 npm i
 ```
 
+(Note: The "MYSQL_PORT" variable is the port of the MySQLX plugin, not your server as a whole)
+Also make sure to include a .env file in the main directory of this project with the following parameters to connect to your MySQL server:
+
+```.env
+MYSQL_USERNAME=username
+MYSQL_PASSWORD=password
+MYSQL_PORT=33060
+MYSQL_HOST=localhost
+DB_NAME=osrs_market
+```
+
 ## Developing
 
 Once you've installed all of the dependencies, you can start a development server:
@@ -39,8 +50,16 @@ To create a production version of the app:
 npm run build
 ```
 
+## Running
+
 You can preview the production build with `npm run preview`. Otherwise, you can run the production build with:
 
 ```bash
-node run build
+node build
+```
+
+Or if you prefer to simply have a dev server, as discussed earlier, simply use:
+
+```bash
+npm run dev
 ```
